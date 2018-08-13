@@ -7,7 +7,7 @@
 //
 
 /// An ordered, unique collection of objects.
-public class OrderedSet<T: Hashable> {
+public class OrderedSet<T: Hashable>: Collection {
     fileprivate var contents = [T: Index]() // Needs to have a value of Index instead of Void for fast removals
     fileprivate var sequencedContents = [UnsafeMutablePointer<T>]()
     
