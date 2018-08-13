@@ -186,6 +186,24 @@ public class OrderedSet<T: Hashable> {
         
         return false
     }
+
+    /**
+     Finds objects within a sequence that are intersecting the ordered set
+     - parameter    other:  The sequence to look for the intersection in.
+     - returns:             Array of objects from sequence that are present in the ordered set.
+     */
+    public func intersectingObjects<S: Sequence>(in other: S) -> [T] where S.Iterator.Element == T {
+        var gen = other.makeIterator()
+        var duplicatedObjects = [T]()
+
+        while let object: T = gen.next() {
+            if contains(object) {
+                duplicatedObjects.append(object)
+            }
+        }
+
+        return duplicatedObjects
+    }
     
     /**
      Tests if a the ordered set is a subset of another sequence.
